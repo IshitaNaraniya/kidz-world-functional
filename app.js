@@ -123,7 +123,8 @@ function updatePrice() {
 
 cartButton.onclick = () => {
   updatePrice();
-
+  WhatsappLink();
+  window.open(wLink, "_blank");
 
   for (let index = 0; index < items.length; index++) {
     if (items[index].quantity != 0) {
@@ -140,3 +141,14 @@ cartButton.onclick = () => {
     "The total amount is " + finalDollars + "$ and " + finalCents + " cents"
   );
 };
+
+var wLink = "https://api.whatsapp.com/send?phone=916378986421&text=Order%20details"
+function WhatsappLink() {
+  for (let index = 0; index < items.length; index++) {
+    if (items[index].quantity != 0) {
+      wLink += "%0A" + items[index].name + "%20" + items[index].quantity;
+    }
+  }
+  wLink +=
+    "%0A" + "Total%20Price:%20$" + finalDollars + "." + finalCents;
+}
